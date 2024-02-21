@@ -1,3 +1,27 @@
 .checkoutStepsContainer {
   display: flex;
+  gap: 20;
+}
+.stepContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10;
+  padding: 0 20px;
+  align-items: center;
+}
+.circle {
+  height: 100;
+  width: 200;
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgb(188, 186, 186);
+  margin: 0 10px;
+}
+.current-step {
+  color: #fff;
+  background-color: rgb(0, 136, 255);
+}
+.completed-step {
+  background-color: rgb(87, 181, 4);
 }
