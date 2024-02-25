@@ -6,23 +6,23 @@ const CheckoutStepper = ({ checkoutSteps }) => {
     if (currentStep < checkoutSteps.length) setCurrentStep((step) => step + 1);
   };
   const stepClass = (step) =>
-    step === currentStep
-      ? "current-step"
-      : step < currentStep
-      ? "completed-step"
-      : "";
+    step === currentStep ? "active" : step < currentStep ? "completed" : "";
   return (
-    <div className="">
+    <div className="container">
       <div className="checkoutStepsContainer">
         {checkoutSteps.map(({ name }, i) => (
           <div key={i} className="stepContainer">
-            <span className={`circle ${stepClass(i)}`}>
-              {i < currentStep ? "✔️" : i + 1}
+            <span className={`step ${stepClass(i)}`}>
+              {i < currentStep ? <span>&#10003;</span> : i + 1}
             </span>
             <span>{name}</span>
           </div>
         ))}
+        <div className="progress-bar">
+          <div className="progress"></div>
+        </div>
       </div>
+
       <p>
         {currentStep === checkoutSteps.length
           ? checkoutSteps[currentStep - 1].Component()
