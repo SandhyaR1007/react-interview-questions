@@ -1,6 +1,6 @@
-import CheckoutStepper from "./components/CheckoutStepper";
-import "./App.css";
-const App = () => {
+import CheckoutStepper from "./CheckoutStepper";
+import "./stepper.styles.css";
+const CheckoutContainer = () => {
   return (
     <div>
       <h1>Checkout</h1>
@@ -9,7 +9,7 @@ const App = () => {
   );
 };
 
-export default App;
+export default CheckoutContainer;
 
 const checkoutSteps = [
   {
