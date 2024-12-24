@@ -1,40 +1,19 @@
 import React from "react";
 
-const Square = ({ color, outerPos, innerPos }) => {
+const Square = ({ color, outerPos, innerPos, ele, hoveredStates }) => {
+  const isHovered = hoveredStates?.find(
+    (ele) => ele.outerPos === outerPos && ele.innerPos == innerPos
+  );
   return (
-    <div className={`square ${color === 0 ? "darkBg" : "lightBg"}`}>
-      {getElement(outerPos, innerPos)}
+    <div
+      className={`square ${color === 0 ? "darkBg" : "lightBg"} ${
+        isHovered ? "hoveredBg" : ""
+      }`}
+      data-innerpos={innerPos}
+    >
+      {ele}
     </div>
   );
 };
 
 export default Square;
-const getElement = (outerPos, innerPos) => {
-  if (outerPos === 0) return whites[innerPos];
-  if (outerPos === 7) return blacks[innerPos];
-  if (outerPos === 1) return whitePawn;
-  if (outerPos === 6) return blackPawn;
-};
-
-const whites = {
-  0: "♖",
-  7: "♖",
-  1: "♘",
-  6: "♘",
-  2: "♗",
-  5: "♗",
-  4: "♔",
-  3: "♕",
-};
-const blackPawn = "♟";
-const whitePawn = "♙";
-const blacks = {
-  0: "♜",
-  7: "♜",
-  1: "♞",
-  6: "♞",
-  2: "♝",
-  5: "♝",
-  4: "♛",
-  3: "♚",
-};

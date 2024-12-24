@@ -16,7 +16,13 @@
 
 .darkBg {
   background-color: rgb(111, 111, 111);
+  border: 1px solid rgb(111, 111, 111);
 }
 .lightBg {
   background-color: rgb(249, 245, 229);
+  border: 1px solid rgb(249, 245, 229);
+}
+.hoveredBg {
+  background-color: rgb(131, 232, 228);
+  border: 1px solid rgb(114, 215, 212);
 }
