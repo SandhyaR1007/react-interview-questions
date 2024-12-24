@@ -7,10 +7,16 @@
 .square {
   width: 90px;
   height: 90px;
+  /* color: red; */
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.black {
-  background-color: black;
+
+.darkBg {
+  background-color: rgb(111, 111, 111);
 }
-.white {
-  background-color: white;
+.lightBg {
+  background-color: rgb(249, 245, 229);
 }
