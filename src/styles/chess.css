@@ -1,0 +1,16 @@
+.board {
+  border: 1px solid;
+  max-width: fit-content;
+
+  margin: 5rem auto;
+}
+.square {
+  width: 90px;
+  height: 90px;
+}
+.black {
+  background-color: black;
+}
+.white {
+  background-color: white;
+}
