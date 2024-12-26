@@ -3,7 +3,7 @@ import GridSquare from "./GridSquare";
 
 const BishopGrid = () => {
   const grid = new Array(8).fill(null);
-  const [bishopPositions, setBishopPositions] = useState([]);
+  const [piecePosition, setPiecePosition] = useState([0, 0]);
   return (
     <div className="board">
       {grid.map((g, outerIndex) => (
@@ -13,8 +13,8 @@ const BishopGrid = () => {
               key={innerIndex + outerIndex}
               outerIndex={outerIndex}
               innerIndex={innerIndex}
-              bishopPositions={bishopPositions}
-              setBishopPositions={setBishopPositions}
+              piecePosition={piecePosition}
+              setPiecePosition={setPiecePosition}
             />
           ))}
         </div>

@@ -4,10 +4,17 @@ import { getPositions } from "../../utils/helper";
 const GridSquare: React.FC<GridSquareProps> = ({
   outerIndex,
   innerIndex,
-  bishopPositions,
-  setBishopPositions,
+  piecePosition,
+  setPiecePosition,
 }) => {
   const [isPosition, setIsPosition] = useState(false);
+
+  const [bishopPositions, setBishopPositions] = useState<any>([]);
+
+  useEffect(() => {
+    positionHandler(piecePosition[0], piecePosition[1]);
+  }, [piecePosition]);
+
   useEffect(() => {
     const isPos = bishopPositions.find(
       ([a, b]) => a == outerIndex && b === innerIndex
@@ -15,7 +22,7 @@ const GridSquare: React.FC<GridSquareProps> = ({
     setIsPosition(isPos ? true : false);
   }, [bishopPositions]);
 
-  function clickHandler(innerIndex: number, outerIndex: number) {
+  function positionHandler(outerIndex: number, innerIndex: number) {
     let result: any[] = [];
     result.push(...getPositions(innerIndex, outerIndex, -1, -1)); //top left
     result.push(...getPositions(innerIndex, outerIndex, -1, 1)); // top right
@@ -27,14 +34,15 @@ const GridSquare: React.FC<GridSquareProps> = ({
 
   return (
     <div
-      onClick={() => clickHandler(innerIndex, outerIndex)}
+      onClick={() => setPiecePosition([outerIndex, innerIndex])}
       className={`square ${
         (innerIndex + outerIndex) % 2 == 0 ? "darkBg" : "lightBg"
       } ${isPosition ? "hoveredBg" : ""}`}
-      style={{
-        fontSize: "1.5rem",
-      }}
-    ></div>
+    >
+      {outerIndex === piecePosition[0] && innerIndex === piecePosition[1] ? (
+        <span>♝</span>
+      ) : null}
+    </div>
   );
 };
 
@@ -43,6 +51,6 @@ export default GridSquare;
 interface GridSquareProps {
   outerIndex: number;
   innerIndex: number;
-  bishopPositions: any[];
-  setBishopPositions: React.Dispatch<React.SetStateAction<any>>;
+  piecePosition: any[];
+  setPiecePosition: React.Dispatch<React.SetStateAction<any>>;
 }
