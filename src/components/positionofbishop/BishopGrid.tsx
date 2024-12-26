@@ -5,7 +5,7 @@ import { HTML5Backend } from "react-dnd-html5-backend";
 
 const BishopGrid = () => {
   const grid = new Array(8).fill(null);
-  const [piecePosition, setPiecePosition] = useState([0, 0]);
+  const [piecePosition, setPiecePosition] = useState<[number, number]>([0, 0]);
   return (
     <DndProvider backend={HTML5Backend}>
       <div className="board">
