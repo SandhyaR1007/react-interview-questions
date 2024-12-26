@@ -11,7 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Container />} />
         {routes.map((r) => (
-          <Route path={r.path} element={<r.component />} />
+          <Route key={r.name} path={r.path} element={<r.component />} />
         ))}
       </Routes>
     </div>
