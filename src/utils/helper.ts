@@ -1,3 +1,7 @@
+export const ItemTypes = {
+  PIECE: "bishop",
+};
+
 export function getPositions(
   innerIndex: number,
   outerIndex: number,

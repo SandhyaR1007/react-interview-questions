@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { getPositions } from "../../utils/helper";
+import { getPositions, ItemTypes } from "../../utils/helper";
+import { useDrop } from "react-dnd";
+import Bishop from "./Bishop";
 
 const GridSquare: React.FC<GridSquareProps> = ({
   outerIndex,
@@ -7,6 +9,16 @@ const GridSquare: React.FC<GridSquareProps> = ({
   piecePosition,
   setPiecePosition,
 }) => {
+  const [{ isOver }, drop] = useDrop(
+    () => ({
+      accept: ItemTypes.PIECE,
+      drop: () => setPiecePosition([outerIndex, innerIndex]),
+      collect: (monitor) => ({
+        isOver: !!monitor.isOver(),
+      }),
+    }),
+    [outerIndex, innerIndex]
+  );
   const [isPosition, setIsPosition] = useState(false);
 
   const [bishopPositions, setBishopPositions] = useState<any>([]);
@@ -34,14 +46,16 @@ const GridSquare: React.FC<GridSquareProps> = ({
 
   return (
     <div
-      onClick={() => setPiecePosition([outerIndex, innerIndex])}
+      ref={drop}
       className={`square ${
         (innerIndex + outerIndex) % 2 == 0 ? "darkBg" : "lightBg"
       } ${isPosition ? "hoveredBg" : ""}`}
+      style={{ position: "relative" }}
     >
       {outerIndex === piecePosition[0] && innerIndex === piecePosition[1] ? (
-        <span>♝</span>
+        <Bishop />
       ) : null}
+      {isOver && <div className="pieceOverlay" />}
     </div>
   );
 };
