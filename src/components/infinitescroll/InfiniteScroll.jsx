@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+//infinite scroll
 const InfiniteScroll = () => {
   const [count, setCount] = useState(20);
   let elements = [];
