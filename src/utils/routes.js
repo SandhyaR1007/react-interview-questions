@@ -1,7 +1,7 @@
 import Chess from "../components/chessboard/Chess";
 
 import Counter from "../components/counter/Counter";
-import InfiniteScroll from "../components/infiniteScroll/InfiniteScroll";
+// import InfiniteScroll from "../components/infiniteScroll/InfiniteScroll";
 import BishopGrid from "../components/positionofbishop/BishopGrid";
 
 export const routes = [
@@ -10,11 +10,11 @@ export const routes = [
     path: "/counter",
     component: Counter,
   },
-  {
-    name: "Infinite Scroll",
-    path: "/infiniteScroll",
-    component: InfiniteScroll,
-  },
+  // {
+  //   name: "Infinite Scroll",
+  //   path: "/infiniteScroll",
+  //   component: InfiniteScroll,
+  // },
   {
     name: "Chess",
     path: "/chess",
