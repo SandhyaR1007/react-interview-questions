@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "../../styles/progressbar.css";
 const ProgressBar = () => {
   //approach 1
@@ -20,22 +20,57 @@ const ProgressBar = () => {
   // }, []);
   const [value, setValue] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [isStarted, setIsStarted] = useState(false);
+  const intervalRef = useRef();
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setValue((prevValue) => prevValue + 1);
-    }, 200);
-    return () => clearInterval(intervalId);
-  }, []);
+    if (isStarted && !intervalRef.current) {
+      intervalRef.current = setInterval(() => {
+        // avoid stacking multiple setIntervals
+        setValue((prevValue) => {
+          if (prevValue >= 100) {
+            setIsStarted(false);
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+            return prevValue;
+          }
+          return prevValue + 1;
+        });
+      }, 200);
+    }
+
+    return () => {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    };
+  }, [isStarted]);
   // since handleComplete is getting created on every render for value change
   const handleComplete = useCallback(() => {
     setIsComplete(true);
   }, []);
+  const handleStart = () => {
+    setIsStarted(true);
+  };
+  const handleStop = () => {
+    setIsStarted(false);
+  };
+  const handleReset = () => {
+    clearInterval(intervalRef.current);
+    setIsStarted(false);
+    setIsComplete(false);
+    setValue(0);
+    intervalRef.current = null;
+  };
 
   return (
     <div>
       <Bar value={value} onComplete={handleComplete} />
       <div style={{ textAlign: "center" }}>
         {isComplete ? "Success!!" : "Loading..."}
+      </div>
+      <div>
+        <button onClick={handleStart}>Start</button>
+        <button onClick={handleStop}>Stop</button>
+        <button onClick={handleReset}>Reset</button>
       </div>
     </div>
   );
