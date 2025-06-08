@@ -1,0 +1,24 @@
+.progress {
+  width: 500px;
+  height: 20px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.progressbar {
+  height: 100%;
+  background-color: #00c251;
+  z-index: 1;
+  transition: all ease-in-out 0.2s;
+}
+.progress span {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: semi-bold;
+  z-index: 2;
+}
